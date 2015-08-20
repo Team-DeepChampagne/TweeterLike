@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweeterLike.Data", "TweeterLike.Data\TweeterLike.Data.csproj", "{56022145-5ED5-4242-88EE-40577FF6D43F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweeterLike.Models", "TweeterLike.Models\TweeterLike.Models.csproj", "{E26E133E-FF67-4666-B048-C50FEAFE33C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweeterLike.WebServices", "TweeterLike.WebServices\TweeterLike.WebServices.csproj", "{D7F4B4C6-6622-4CB8-A20D-7D14E4135B17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweeterLike.Tests", "TweeterLike.Tests\TweeterLike.Tests.csproj", "{6141D21D-C321-4B99-B3BD-B2B2CC06AC31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56022145-5ED5-4242-88EE-40577FF6D43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56022145-5ED5-4242-88EE-40577FF6D43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56022145-5ED5-4242-88EE-40577FF6D43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56022145-5ED5-4242-88EE-40577FF6D43F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E26E133E-FF67-4666-B048-C50FEAFE33C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E26E133E-FF67-4666-B048-C50FEAFE33C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E26E133E-FF67-4666-B048-C50FEAFE33C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E26E133E-FF67-4666-B048-C50FEAFE33C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F4B4C6-6622-4CB8-A20D-7D14E4135B17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F4B4C6-6622-4CB8-A20D-7D14E4135B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F4B4C6-6622-4CB8-A20D-7D14E4135B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F4B4C6-6622-4CB8-A20D-7D14E4135B17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6141D21D-C321-4B99-B3BD-B2B2CC06AC31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6141D21D-C321-4B99-B3BD-B2B2CC06AC31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6141D21D-C321-4B99-B3BD-B2B2CC06AC31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6141D21D-C321-4B99-B3BD-B2B2CC06AC31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
