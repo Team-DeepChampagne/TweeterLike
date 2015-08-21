@@ -18,6 +18,27 @@ namespace TweeterLike.Data.Context
 
         public virtual DbSet<Reply> Replies { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ApplicationUser>().HasMany(u => u.Following).WithMany()
+            .Map(m =>
+            {
+                m.MapLeftKey("UserId");
+                m.MapRightKey("FollowerId");
+                m.ToTable("UsersFollowering");
+            });
+
+            modelBuilder.Entity<ApplicationUser>().HasMany(u => u.Followed).WithMany()
+                .Map(m =>
+                {
+                    m.MapLeftKey("UserId");
+                    m.MapRightKey("FollowedUserId");
+                    m.ToTable("UsersFollowered");
+                });
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public static TweeterLikeContext Create()
         {
             return new TweeterLikeContext();

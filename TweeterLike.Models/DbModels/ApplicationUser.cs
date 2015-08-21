@@ -10,12 +10,14 @@
     public class ApplicationUser : IdentityUser
     {
         private ICollection<Post> posts;
-        private ICollection<ApplicationUser> followers;
+        private ICollection<ApplicationUser> followed;
+        private ICollection<ApplicationUser> following;
 
         public ApplicationUser()
         {
             this.posts = new HashSet<Post>();
-            this.followers = new HashSet<ApplicationUser>();
+            this.followed = new HashSet<ApplicationUser>();
+            this.following = new HashSet<ApplicationUser>();
             this.CreatedOn = DateTime.Now;
         }
 
@@ -25,10 +27,16 @@
             set { this.posts = value; }
         }
 
-        public virtual ICollection<ApplicationUser> Followers
+        public virtual ICollection<ApplicationUser> Followed
         {
-            get { return this.followers; }
-            set { this.followers = value; }
+            get { return this.followed; }
+            set { this.followed = value; }
+        }
+
+        public virtual ICollection<ApplicationUser> Following
+        {
+            get { return this.following; }
+            set { this.following = value; }
         }
 
         public DateTime CreatedOn { get; set; }
