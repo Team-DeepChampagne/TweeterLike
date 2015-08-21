@@ -36,5 +36,7 @@
 
             return userIdentity;
         }
+
+        public bool IsDeleted { get; set; }
     }
 }
