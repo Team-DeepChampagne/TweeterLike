@@ -19,6 +19,8 @@ using TweeterLike.WebServices.Results;
 
 namespace TweeterLike.WebServices.Controllers
 {
+    using TweeterLike.Models.DbModels;
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

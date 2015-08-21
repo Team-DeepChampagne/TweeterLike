@@ -13,6 +13,8 @@ using TweeterLike.WebServices.Models;
 
 namespace TweeterLike.WebServices.Providers
 {
+    using TweeterLike.Models.DbModels;
+
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
