@@ -1,58 +1,53 @@
 ﻿namespace TweeterLike.Data.DataLayer
 {
+    using System;
+    using System.Collections.Generic;
     using Context;
     using Repositories;
+    using Models.DbModels;
 
     public class TweeterLikeData : ITweeterLikeData
     {
-        private ApplicationUserRepository applicationUserRepository;
-        private PostRepository postRepository;
-        private ReplyRepository replyRepository;
+        private readonly IDictionary<Type, object> repositories;
 
         public TweeterLikeData(TweeterLikeContext context)
         {
             this.Context = context;
+            this.repositories = new Dictionary<Type, object>();
         }
 
         public TweeterLikeContext Context { get; private set; }
 
-        public ApplicationUserRepository ApplicationUsers
+        public IRepository<ApplicationUser> ApplicationUsers
         {
-            get
-            {
-                if (this.applicationUserRepository == null)
-                {
-                    this.applicationUserRepository = new ApplicationUserRepository(this.Context);
-                }
-
-                return this.applicationUserRepository;
-            }
+            get { return this.GetRepository<ApplicationUser>(); }
         }
 
-        public PostRepository Posts
+        public IRepository<Post> Posts
         {
-            get
-            {
-                if (this.postRepository == null)
-                {
-                    this.postRepository = new PostRepository(this.Context);
-                }
-
-                return this.postRepository;
-            }
+            get { return this.GetRepository<Post>(); }
         }
 
-        public ReplyRepository Replies
+        public IRepository<Reply> Replies
         {
-            get
-            {
-                if (this.replyRepository == null)
-                {
-                    this.replyRepository = new ReplyRepository(this.Context);
-                }
+            get { return this.GetRepository<Reply>(); }
+        }
 
-                return this.replyRepository;
+        public int SaveChanges()
+        {
+            return this.Context.SaveChanges();
+        }
+
+        private IRepository<T> GetRepository<T>() where T : class
+        {
+            var modelType = typeof(T);
+            if (!this.repositories.ContainsKey(modelType))
+            {
+                var repositoryType = typeof(Repository<T>);
+                this.repositories.Add(modelType, Activator.CreateInstance(repositoryType, this.Context));
             }
+
+            return (IRepository<T>)this.repositories[modelType];
         }
     }
 }

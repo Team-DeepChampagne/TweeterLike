@@ -1,5 +1,6 @@
 ﻿namespace TweeterLike.Models.DbModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -15,6 +16,7 @@
         {
             this.posts = new HashSet<Post>();
             this.followers = new HashSet<ApplicationUser>();
+            this.CreatedOn = DateTime.Now;
         }
 
         public virtual ICollection<Post> Posts
@@ -29,7 +31,7 @@
             set { this.followers = value; }
         }
 
-        public bool IsDeleted { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager,
             string authenticationType)

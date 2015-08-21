@@ -37,7 +37,5 @@
         }
 
         public DateTime CreatedAt { get; private set; }
-
-        public bool IsDeleted { get; set; }
     }
 }

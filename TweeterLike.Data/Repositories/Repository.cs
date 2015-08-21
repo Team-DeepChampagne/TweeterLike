@@ -7,10 +7,10 @@
     using System.Linq.Expressions;
     using Context;
 
-    public abstract class Repository<T>
+    public class Repository<T>
         : IRepository<T> where T : class
     {
-        protected Repository(TweeterLikeContext context)
+        public Repository(TweeterLikeContext context)
         {
             this.Context = context;
             this.DbSet = this.Context.Set<T>();
@@ -47,7 +47,10 @@
             return entity;
         }
 
-        public abstract void Delete(T entity);
+        public void Delete(T entity)
+        {
+            this.DbSet.Remove(entity);
+        }
 
         public void SaveChanges()
         {

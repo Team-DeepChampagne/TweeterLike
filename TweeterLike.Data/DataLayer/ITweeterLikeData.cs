@@ -5,10 +5,12 @@
 
     public interface ITweeterLikeData
     {
-        ApplicationUserRepository ApplicationUsers { get; }
+        IRepository<ApplicationUser> ApplicationUsers { get; }
 
-        PostRepository Posts { get; }
+        IRepository<Post> Posts { get; }
 
-        ReplyRepository Replies { get; } 
+        IRepository<Reply> Replies { get; }
+
+        int SaveChanges();
     }
 }
