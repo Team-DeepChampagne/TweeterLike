@@ -58,9 +58,14 @@
   <ItemGroup>
     <Compile Include="Context\TweeterLikeContext.cs" />
     <Compile Include="DataLayer\ITweeterLikeData.cs" />
+    <Compile Include="DataLayer\TweeterLikeData.cs" />
     <Compile Include="Initialization\DbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\ReplyRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TweeterLike.Models\TweeterLike.Models.csproj">

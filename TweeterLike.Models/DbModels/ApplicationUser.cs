@@ -29,6 +29,8 @@
             set { this.followers = value; }
         }
 
+        public bool IsDeleted { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager,
             string authenticationType)
         {
@@ -36,7 +38,5 @@
 
             return userIdentity;
         }
-
-        public bool IsDeleted { get; set; }
     }
 }

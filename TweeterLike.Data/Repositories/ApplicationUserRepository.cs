@@ -13,7 +13,7 @@
 
         public override void Delete(ApplicationUser entity)
         {
-            this.DbSet.Remove(entity);
+            entity.IsDeleted = true;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TweeterLike.Data.Repositories
+﻿﻿namespace TweeterLike.Data.Repositories
 {
     using Context;
     using Models.DbModels;
@@ -11,7 +11,7 @@
 
         public override void Delete(Post entity)
         {
-            this.DbSet.Remove(entity);
+            entity.IsDeleted = true;
         }
     }
 }

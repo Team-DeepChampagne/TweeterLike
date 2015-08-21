@@ -20,9 +20,9 @@ namespace TweeterLike.Data.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ApplicationUser>().Map(m => m.Requires("IsDeleted").HasValue(false));
-            modelBuilder.Entity<Post>().Map(m => m.Requires("IsDeleted").HasValue(false));
-            modelBuilder.Entity<Reply>().Map(m => m.Requires("IsDeleted").HasValue(false));
+            modelBuilder.Entity<ApplicationUser>().Map(m => m.Requires("IsDeleted").HasValue(false)).Ignore(m => m.IsDeleted);
+            modelBuilder.Entity<Post>().Map(m => m.Requires("IsDeleted").HasValue(false)).Ignore(m => m.IsDeleted);
+            modelBuilder.Entity<Reply>().Map(m => m.Requires("IsDeleted").HasValue(false)).Ignore(m => m.IsDeleted);
 
             base.OnModelCreating(modelBuilder);
         }
