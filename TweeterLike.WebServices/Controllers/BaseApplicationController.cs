@@ -1,13 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-
-namespace TweeterLike.WebServices.Controllers
+﻿namespace TweeterLike.WebServices.Controllers
 {
+    using System.Web.Http;
+    using Data.Context;
+    using Data.DataLayer;
+
     public class BaseApplicationController : ApiController
     {
+        public BaseApplicationController(ITweeterLikeData tweeterLikeData)
+        {
+            this.Data = tweeterLikeData;
+        }
+
+        public BaseApplicationController()
+            : this(new TweeterLikeData(new TweeterLikeContext()))
+        {
+
+        }
+
+        protected ITweeterLikeData Data { get; set; }
     }
 }
