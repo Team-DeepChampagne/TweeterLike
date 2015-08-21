@@ -2,6 +2,8 @@
 {
     using System.Linq;
     using System.Web.Http;
+    using System.Web.OData;
+    using Models.BindingModels;
     using Models.ViewModels;
 
     [RoutePrefix("api/user")]
@@ -16,7 +18,14 @@
                 return this.BadRequest(string.Format("User with username {0} not found!", username));
             }
 
-            var userViewModel = new UserProfileViewModel(user);
+            var userViewModel = new UserProfileViewModel()
+            {
+                Username = user.UserName,
+                Email = user.Email,
+                CreatedOn = user.CreatedOn,
+                Posts = user.Posts.Select(p => p.Title)
+            };
+
             return this.Ok(userViewModel);
         }
 

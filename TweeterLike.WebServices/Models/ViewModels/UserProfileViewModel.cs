@@ -8,14 +8,6 @@
 
     public class UserProfileViewModel
     {
-        public UserProfileViewModel(ApplicationUser user)
-        {
-            this.Username = user.UserName;
-            this.Email = user.Email;
-            this.CreatedOn = user.CreatedOn;
-            this.Posts = user.Posts.Select(p => p.Title);
-        }
-
         public string Username { get; set; }
 
         public string Email { get; set; }
@@ -26,7 +18,16 @@
 
         public static Expression<Func<ApplicationUser, UserProfileViewModel>> Create
         {
-            get { return a => new UserProfileViewModel(a); }
+            get
+            {
+                return user => new UserProfileViewModel()
+                {
+                    Username = user.UserName,
+                    Email = user.Email,
+                    CreatedOn = user.CreatedOn,
+                    Posts = user.Posts.Select(p => p.Title)
+                };
+            }
         }
     }
 }
