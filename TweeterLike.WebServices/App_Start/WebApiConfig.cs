@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
-
 namespace TweeterLike.WebServices
 {
     public static class WebApiConfig
@@ -19,6 +18,9 @@ namespace TweeterLike.WebServices
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            var cors = new EnableCorsAttribute("http://localhost:50357", "*", "*");
+            config.EnableCors(cors);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
