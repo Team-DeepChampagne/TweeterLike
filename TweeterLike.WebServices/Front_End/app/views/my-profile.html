@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <form>
+        <label>Old Password:</label>
+        <input type="password" name="oldPassword" value="" data-ng-model="newPassword.OldPassword" />
+        <label>New Password:</label>
+        <input type="password" name="newPassword" value="" data-ng-model="newPassword.NewPassword" />
+        <label>Confirm the new Password:</label>
+        <input type="password" name="newPasswordConfirm" value="" data-ng-model="newPassword.ConfirmPassword" />
+        <button type="submit" data-ng-click="changePassword()">Submit</button>
+        <div data-ng-hide="message == ''"
+             data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+            {{message}}
+        </div>
+    </form>
+</body>
+</html>

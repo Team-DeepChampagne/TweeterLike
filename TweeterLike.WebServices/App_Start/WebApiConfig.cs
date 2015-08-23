@@ -19,9 +19,6 @@ namespace TweeterLike.WebServices
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            var cors = new EnableCorsAttribute("http://localhost:50357", "*", "*");
-            config.EnableCors(cors);
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

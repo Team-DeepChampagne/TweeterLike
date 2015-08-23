@@ -245,6 +245,25 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Front_End\app\app.js" />
+    <Content Include="Front_End\app\controllers\homeController.js" />
+    <Content Include="Front_End\app\controllers\indexController.js" />
+    <Content Include="Front_End\app\controllers\loginController.js" />
+    <Content Include="Front_End\app\controllers\myProfileController.js" />
+    <Content Include="Front_End\app\controllers\signupController.js" />
+    <Content Include="Front_End\app\controllers\tweetsFeedController.js" />
+    <Content Include="Front_End\app\services\authInterceptorService.js" />
+    <Content Include="Front_End\app\services\authService.js" />
+    <Content Include="Front_End\app\views\home.html" />
+    <Content Include="Front_End\app\views\login.html" />
+    <Content Include="Front_End\app\views\my-profile.html" />
+    <Content Include="Front_End\app\views\signup.html" />
+    <Content Include="Front_End\app\views\tweets-feed.html" />
+    <Content Include="Front_End\content\css\bootstrap.min.css" />
+    <Content Include="Front_End\content\css\loading-bar.css" />
+    <Content Include="Front_End\index.html" />
+    <Content Include="Front_End\scripts\angular-local-storage.min.js" />
+    <Content Include="Front_End\scripts\loading-bar.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -297,6 +316,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Front_End\content\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

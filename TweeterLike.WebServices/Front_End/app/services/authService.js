@@ -22,7 +22,7 @@ app.factory('authService', ['$http', '$q',
     var _login = function (loginData) {
 
         var data = "username=" + loginData.userName + "&password=" + loginData.password + "&grant_type=password";
-
+       
         var deferred = $q.defer();
 
         $http.post(serviceBase + 'token', data, {
