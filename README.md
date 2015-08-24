@@ -8,6 +8,7 @@ Authorization - registration, login, logout - Done
 Controllers - user, post, replies
 Roles - Admin, User
 Add authorization
+Unit tests
 FrontEnd - page and whatnot
 Get certain user posts (sorted by date) - Done.
 
