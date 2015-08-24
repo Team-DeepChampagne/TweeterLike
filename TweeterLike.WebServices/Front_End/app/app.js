@@ -23,9 +23,9 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/tweets-feed.html"
     });
 
-    $routeProvider.when("/my-profile", {
-        controller: "myProfileController",
-        templateUrl: "app/views/my-profile.html"
+    $routeProvider.when("/my-tweets", {
+        controller: "myTweetsController",
+        templateUrl: "app/views/my-tweets.html"
     });
 
     $routeProvider.otherwise({ redirectTo: "/home" });

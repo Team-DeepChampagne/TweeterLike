@@ -1,0 +1,51 @@
+﻿body {
+   padding-top: 4%;
+}
+.main-content {
+    height: 520px;
+    padding-top: 8%;
+    padding-bottom: 11%;
+}
+
+.form-login {
+    margin: 0 auto;
+    width: 25%;
+    text-align: center;
+    
+}
+
+.login {
+    padding-bottom: 6.5%;
+}
+
+.bigger-font {
+    font-size: 15px;
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.home-header {
+    margin-bottom: 40px;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+
+.form-login input {
+    text-align:center;
+}

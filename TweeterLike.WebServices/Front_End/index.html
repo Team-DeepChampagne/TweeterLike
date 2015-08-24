@@ -4,7 +4,7 @@
     <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
     <title>Twitter Like</title>
     <link href="content/css/bootstrap.min.css" rel="stylesheet" />
-    <!--<link href="content/css/site.css" rel="stylesheet" />-->
+    <link href="content/css/site.css" rel="stylesheet" />
     <link href="content/css/loading-bar.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
@@ -17,18 +17,26 @@
                         data-ng-click="navbarExpanded = !navbarExpanded">
                     <span class="glyphicon glyphicon-chevron-down"></span>
                 </button>
-                <a class="navbar-brand" href="#/">Home</a>
+                <a class="navbar-brand" href="#/home" data-ng-hide="authentication.isAuth">Home</a>
+                <a class="navbar-brand" href="#/tweets-feed" data-ng-hide="!authentication.isAuth">Tweets Feed</a>
             </div>
             <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right bigger-font">
                     <li data-ng-hide="!authentication.isAuth">
-                        <a href="#">Welcome {{authentication.userName}}!</a>
+                        <a href="#/tweets-feed">Welcome {{authentication.userName}}!</a>
                     </li>
                     <li data-ng-hide="!authentication.isAuth">
-                        <a href="#/my-profile">My Profile</a>
+                        <a href="#/my-tweets">My Tweets</a>
                     </li>
                     <li data-ng-hide="!authentication.isAuth">
-                        <a href="" data-ng-click="logOut()">Logout</a>
+                        <a href="#">
+                           My Profile
+                           <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </li>
+                    <li data-ng-hide="!authentication.isAuth">
+                        <a href="" data-ng-click="logOut()">Logout
+                            <span class="glyphicon glyphicon-log-out"></span></a>
                     </li>
                     <li data-ng-hide="authentication.isAuth">
                         <a href="#/login">Login</a>
@@ -40,17 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="jumbotron">
-        <div class="container">
-            <div class="page-header text-center">
-                <h1>Twitter</h1>
-            </div>
-            <p>
-                This is twitter like web site
-            </p>
-        </div>
-    </div>
-    <div class="container">
+    <div class="container main-content">
         <div data-ng-view="">
         </div>
     </div>
@@ -82,6 +80,6 @@
     <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/signupController.js"></script>
     <script src="app/controllers/tweetsFeedController.js"></script>
-    <script src="app/controllers/myProfileController.js"></script>
+    <script src="app/controllers/myTweetsController.js"></script>
 </body>
 </html>

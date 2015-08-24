@@ -4,6 +4,21 @@
     <title></title>
 </head>
 <body>
+    <h3>Post a tweet:</h3>
+    <form>
+        <label>Tweet title:</label>
+        <input type="text" name="tweetTitle" value="" data-ng-model="newTweet.Title" />
+        <label>Tweet content:</label>
+        <input type="text" name="tweetContent" value="" data-ng-model="newTweet.Comment" />
+        <button type="submit" data-ng-click="postTweet()">Tweet</button>
+        <div data-ng-hide="postTweetMessage == ''"
+             data-ng-class="(postedTweetSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+            {{postTweetMessage}}
+        </div>
+    </form>
+    
+
+    <h3>Change your password:</h3>
     <form>
         <label>Old Password:</label>
         <input type="password" name="oldPassword" value="" data-ng-model="newPassword.OldPassword" />
@@ -12,9 +27,9 @@
         <label>Confirm the new Password:</label>
         <input type="password" name="newPasswordConfirm" value="" data-ng-model="newPassword.ConfirmPassword" />
         <button type="submit" data-ng-click="changePassword()">Submit</button>
-        <div data-ng-hide="message == ''"
+        <div data-ng-hide="changePasswordMessage == ''"
              data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
-            {{message}}
+            {{changePasswordMessage}}
         </div>
     </form>
 </body>

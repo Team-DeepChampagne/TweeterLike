@@ -33,6 +33,9 @@
                 Author = user
             };
 
+            this.Data.Posts.Add(post);
+            this.Data.SaveChanges();
+
             var postView = new PostViewModel()
             {
                 AuthorName = post.Author.UserName,
