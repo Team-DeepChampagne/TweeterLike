@@ -16,8 +16,9 @@ Get user info - Done.
 
 Needed web services:
 1. Get all posts of the users you are following (sorted by date).
-2. Search users by username (with contains).
-3. Get the number of users that you are following.
-4. Get the number of users that are folowing you.
-5. Post a comment.
-6. Get comments for certain post (sorted by date).
+2. Delete certain post (it should be yours to be able to delete it).
+3. Search users by username (with contains).
+4. Get the number of users that you are following.
+5. Get the number of users that are folowing you.
+6. Post a comment.
+7. Get comments for certain post (sorted by date).
