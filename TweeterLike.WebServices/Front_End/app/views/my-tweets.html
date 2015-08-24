@@ -3,20 +3,41 @@
 <head>
     <title></title>
 </head>
-<body>
-    <h3>Post a tweet:</h3>
-    <form>
-        <label>Tweet title:</label>
-        <input type="text" name="tweetTitle" value="" data-ng-model="newTweet.Title" />
-        <label>Tweet content:</label>
-        <input type="text" name="tweetContent" value="" data-ng-model="newTweet.Comment" />
-        <button type="submit" data-ng-click="postTweet()">Tweet</button>
-        <div data-ng-hide="postTweetMessage == ''"
+<body>   
+
+    <form role="form" class="post-tweet-form">
+        <h3>Let's tweet!</h3>
+        <div class="form-group">
+            <input type="text" name="tweetTitle" placeholder="Tweet title" value="" data-ng-model="newTweet.Title" />
+        </div>
+        <div class="form-group tweet-content">
+            <textarea type="textarea" name="tweetContent" placeholder="Tweet content" value="" data-ng-model="newTweet.Comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary tweet-btn" data-ng-click="postTweet()">Tweet</button>
+        <div class="post-tweet-message" data-ng-hide="postTweetMessage == ''"
              data-ng-class="(postedTweetSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
             {{postTweetMessage}}
         </div>
     </form>
-    
+    <ul class="tweets-list" ng-hide="true">
+        <li class="li-tweet" ng-repeat="tweet in (totalTweetsLoader = (tweets | filter: query))">
+    </ul>
+    <ul class="tweets-list">
+        <li class="li-tweet"><h4>Your tweets</h4></li>
+        <hr class="your-tweets-hr"/>
+        <li class="li-tweet" ng-repeat="tweet in (tweetsLoader = (tweets | filter: query | limitTo:feedLimit))">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h6 class="tweet-title">{{tweet.Title}}</h6>
+                    <h6 class="created-at">Created at:{{tweet.CreateAt}}</h6>
+                </div>
+                <div class="panel-body">{{tweet.Comment}}</div>
+            </div>
+        </li>
+        <li class="li-tweet">
+            <button ng-hide="tweetsLoader.length == totalTweetsLoader.length" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
+        </li>
+    </ul>
 
     <h3>Change your password:</h3>
     <form>
@@ -28,7 +49,7 @@
         <input type="password" name="newPasswordConfirm" value="" data-ng-model="newPassword.ConfirmPassword" />
         <button type="submit" data-ng-click="changePassword()">Submit</button>
         <div data-ng-hide="changePasswordMessage == ''"
-             data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+             data-ng-class="(changePasswordSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
             {{changePasswordMessage}}
         </div>
     </form>

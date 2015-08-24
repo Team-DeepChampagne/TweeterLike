@@ -34,9 +34,6 @@
                 Author = user
             };
 
-            this.Data.Posts.Add(post);
-            this.Data.SaveChanges();
-
             var postView = new PostViewModel()
             {
                 AuthorName = post.Author.UserName,
@@ -61,7 +58,7 @@
                 return this.BadRequest("No such user");
             }
 
-            var userPosts = user.Posts.AsQueryable();
+            var userPosts = user.Posts.OrderByDescending(p => p.CreatedAt).AsQueryable();
             var userPostsViewModel = userPosts.Select(PostViewModel.Create);
 
             if (!this.ModelState.IsValid)

@@ -8,6 +8,8 @@ app.controller('myTweetsController', ['$scope', '$location',
     $scope.postedTweetSuccessfully = false;
     $scope.changePasswordMessage = "";
     $scope.changePasswordSuccessfully = false;
+    $scope.feedLimit = 5;
+    var currentUsername = authService.authentication.userName;
 
     $scope.newTweet = {
         Title: "",
@@ -19,6 +21,18 @@ app.controller('myTweetsController', ['$scope', '$location',
         NewPassword: "",
         ConfirmPassword: ""
     };
+
+    $scope.showMore = function () {
+        $scope.feedLimit += 5;
+    }
+
+    $http({
+        method: 'GET',
+        url: serviceBase + 'api/post',
+        params: { username: currentUsername }
+    }).success(function (result) {
+        $scope.tweets = result;
+    });
 
     $scope.postTweet = function () {
         $http.post(serviceBase + 'api/Post', $scope.newTweet).then(function (response) {

@@ -2,9 +2,7 @@
    padding-top: 4%;
 }
 .main-content {
-    height: 520px;
-    padding-top: 8%;
-    padding-bottom: 11%;
+    padding-top: 1%;
 }
 
 .form-login {
@@ -48,4 +46,47 @@
 
 .form-login input {
     text-align:center;
+}
+
+#footer {
+    height: 50px;
+}
+
+.li-tweet {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.post-tweet-form {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+}
+
+.tweets-list {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.post-tweet-message {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.tweet-btn {
+    width: 20%;
+}
+
+.your-tweets-hr {
+    width: 80%;
+}
+
+.created-at {
+    display: inline-block;
+    float: right;
+}
+
+.tweet-title {
+    display: inline-block;
+    font-weight: bold;
 }
