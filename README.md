@@ -9,10 +9,11 @@ Controllers - user, post, replies
 Roles - Admin, User
 Add authorization
 FrontEnd - page and whatnot
+Get certain user posts (sorted by date) - Done.
+
 
 Needed web services:
 1. Get all posts of the users you are following (sorted by date).
-2. Get certain user posts (sorted by date).
 3. Search users by username (with contains).
 4. Get the number of users that you are following.
 5. Get the number of users that are folowing you.
