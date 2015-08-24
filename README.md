@@ -10,10 +10,12 @@ Roles - Admin, User
 Add authorization
 FrontEnd - page and whatnot
 
-Needed actions:
-1. Вземане всички туитове за даден user, 
-2. Вземане на туитовете на хората, които следваш (follow-ваш), 
-3. Добавяне на нов туит, 
-4. Follow/Unfollow user, 
-5. Вземане на всички потребители, които даден user следва и които го следват (по-точно ми трябва тяхната бройка в самия response, а кои по-точно са може и да не добавяме засега). 
-6. Евентуално ако остане време за коментари можем да има сървис с който постваш коментар и с който взимаш коментарите за даден туит.
+Needed web services:
+1. Get all posts of the users you are following (sorted by date).
+2. Get certain user posts (sorted by date).
+3. Search users by username (with contains).
+4. Get the number of users that you are following.
+5. Get the number of users that are folowing you.
+6. Get user info.
+7. Post a comment.
+8. Get comments for certain post (sorted by date).
