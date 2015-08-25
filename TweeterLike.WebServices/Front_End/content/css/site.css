@@ -69,12 +69,12 @@
 }
 
 .post-tweet-message {
-    width: 20%;
+    width: 40%;
     margin: 0 auto;
 }
 
 .tweet-btn {
-    width: 20%;
+    width: 40%;
 }
 
 .your-tweets-hr {
@@ -118,4 +118,8 @@
 
 .profil-actions-div {
     margin-top: 20px !important;
+}
+
+.tweet-post-title, .tweet-post-content{
+    width: 40%;
 }

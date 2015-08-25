@@ -24,6 +24,7 @@ app.controller('myTweetsController', ['$scope', '$location',
         params: { username: currentUsername }
     }).success(function (result) {
         $scope.tweets = result;
+       
     });
 
     $scope.postTweet = function () {
@@ -49,5 +50,20 @@ app.controller('myTweetsController', ['$scope', '$location',
              };
          });
     }
+
+    $scope.formatDate = function (tweet) {
+        var sqlDateTimeArr = tweet.CreateAt.split("T");
+        var dateSplit = sqlDateTimeArr[0].split('-');
+        var year = dateSplit[0];
+        var month = dateSplit[1];
+        var date = dateSplit[2];
+        var timeWithMsSplit = sqlDateTimeArr[1].split(".");
+        var timeSplit = timeWithMsSplit[0].split(":");
+        var hours = timeSplit[0];
+        var minutes = timeSplit[1];
+        var seconds = timeSplit[2];
+        return tweet.CreateAt = date + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+    }
+    
   
 }]);

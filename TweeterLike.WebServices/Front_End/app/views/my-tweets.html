@@ -8,10 +8,10 @@
     <form role="form" class="post-tweet-form">
         <h3>Let's tweet!</h3>
         <div class="form-group">
-            <input type="text" name="tweetTitle" placeholder="Tweet title" value="" data-ng-model="newTweet.Title" />
+            <input type="text" class="tweet-post-title" placeholder="Tweet title" value="" data-ng-model="newTweet.Title" />
         </div>
         <div class="form-group tweet-content">
-            <textarea type="textarea" name="tweetContent" placeholder="Tweet content" value="" data-ng-model="newTweet.Comment"></textarea>
+            <textarea type="textarea" class="tweet-post-content" rows="5" placeholder="Tweet content" value="" data-ng-model="newTweet.Comment"></textarea>
         </div>
         <button type="submit" class="btn btn-primary tweet-btn" data-ng-click="postTweet()">Tweet</button>
         <div class="post-tweet-message" data-ng-hide="postTweetMessage == ''"
@@ -30,7 +30,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h6 class="tweet-title">{{tweet.Title}}</h6>
-                    <h6 class="created-at">Created at:{{tweet.CreateAt}}</h6>
+                    <h6 class="created-at">Created at: {{tweet.CreateAt}}</h6>
                 </div>
                 <div class="panel-body">{{tweet.Comment}}</div>
             </div>
