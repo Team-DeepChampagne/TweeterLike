@@ -28,6 +28,16 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/my-tweets.html"
     });
 
+    $routeProvider.when("/my-profile", {
+        controller: "myProfileController",
+        templateUrl: "app/views/my-profile.html"
+    });
+
+    $routeProvider.when("/user-profile", {
+        controller: "userProfileController",
+        templateUrl: "app/views/user-profile.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/home" });
 });
 

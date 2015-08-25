@@ -26,10 +26,13 @@
                         <a href="#/tweets-feed">Welcome {{authentication.userName}}!</a>
                     </li>
                     <li data-ng-hide="!authentication.isAuth">
+                        <a href="#/user-profile">User profile</a>
+                    </li>
+                    <li data-ng-hide="!authentication.isAuth">
                         <a href="#/my-tweets">My Tweets</a>
                     </li>
                     <li data-ng-hide="!authentication.isAuth">
-                        <a href="#">
+                        <a href="#/my-profile">
                            My Profile
                            <span class="glyphicon glyphicon-user"></span>
                         </a>
@@ -69,5 +72,7 @@
     <script src="app/controllers/signupController.js"></script>
     <script src="app/controllers/tweetsFeedController.js"></script>
     <script src="app/controllers/myTweetsController.js"></script>
+    <script src="app/controllers/myProfileController.js"></script>
+    <script src="app/controllers/userProfileController.js"></script>
 </body>
 </html>

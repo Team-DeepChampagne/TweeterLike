@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <input type="text"  name="name" value=" " ng-model="searchedUser" />
+    <button type="submit" ng-click="showUserTweets()">Search</button>
+    <ul class="tweets-list" ng-hide="true">
+        <li class="li-tweet" ng-repeat="tweet in (totalTweetsLoader = (userTweets | filter: query))">
+    </ul>
+    <p>{{totalTweetsLoader.length}}</p>
+    <ul class="tweets-list">
+        <li class="li-tweet"><h4>{{searchedUser}}'s tweets</h4></li>
+        <hr class="your-tweets-hr" />
+        <li class="li-tweet" ng-show="totalTweetsLoader.length == 0"><h4>{{searchedUser}} don't have tweets yet!</h4></li>
+        <li class="li-tweet" ng-repeat="tweet in (tweetsLoader = (userTweets | filter: query | limitTo:feedLimit))">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h6 class="tweet-title">{{tweet.Title}}</h6>
+                    <h6 class="created-at">Created at:{{tweet.CreateAt}}</h6>
+                </div>
+                <div class="panel-body">{{tweet.Comment}}</div>
+            </div>
+        </li>
+        <li class="li-tweet">
+            <button ng-hide="tweetsLoader.length == totalTweetsLoader.length" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
+        </li>
+    </ul>
+</body>
+</html>

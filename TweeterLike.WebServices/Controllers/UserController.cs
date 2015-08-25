@@ -6,6 +6,7 @@
     using Models.BindingModels;
     using Models.ViewModels;
 
+    [Authorize]
     [RoutePrefix("api/user")]
     public class UserController : BaseApplicationController
     {

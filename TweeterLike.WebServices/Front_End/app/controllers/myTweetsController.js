@@ -6,20 +6,12 @@ app.controller('myTweetsController', ['$scope', '$location',
 
     $scope.postTweetMessage = "";
     $scope.postedTweetSuccessfully = false;
-    $scope.changePasswordMessage = "";
-    $scope.changePasswordSuccessfully = false;
     $scope.feedLimit = 5;
     var currentUsername = authService.authentication.userName;
 
     $scope.newTweet = {
         Title: "",
         Comment: ""
-    };
-
-    $scope.newPassword = {
-        OldPassword: "",
-        NewPassword: "",
-        ConfirmPassword: ""
     };
 
     $scope.showMore = function () {
@@ -54,33 +46,6 @@ app.controller('myTweetsController', ['$scope', '$location',
              $scope.newTweet = {
                  Title: "",
                  Comment: ""
-             };
-         });
-    }
-
-
-    $scope.changePassword = function () {
-        $http.post(serviceBase + 'api/Account/ChangePassword', $scope.newPassword).then(function (response) {
-
-            $scope.changePasswordSuccessfully = true;
-            $scope.changePasswordMessage = "Password changed!";
-
-            //Reset the form fields
-            $scope.newPassword = {
-                OldPassword: "",
-                NewPassword: "",
-                ConfirmPassword: ""
-            };
-            return response;   
-        },
-      
-         function (response) {           
-             $scope.changePasswordMessage = "Failed to change password! Please try again!";
-             //Reset the form fields
-             $scope.newPassword = {
-                 OldPassword: "",
-                 NewPassword: "",
-                 ConfirmPassword: ""
              };
          });
     }

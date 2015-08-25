@@ -90,3 +90,32 @@
     display: inline-block;
     font-weight: bold;
 }
+
+.main-my-profile-content {
+    margin: 0 auto;
+    width: 20%;
+}
+
+.profile-actions {
+    width: 20%;
+}
+
+.profile-actions-btns {
+    float: right;
+}
+
+.delete-paragraph {
+    margin-top: 22px;
+}
+
+.change-password-form {
+    margin-top: 25px;
+}
+
+.my-profile-panels {
+    margin-top: 20px;
+}
+
+.profil-actions-div {
+    margin-top: 20px !important;
+}
