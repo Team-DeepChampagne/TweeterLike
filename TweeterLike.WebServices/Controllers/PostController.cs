@@ -84,6 +84,11 @@
                 return this.BadRequest("Can't delete post that is not yours");
             }
 
+            foreach (var reply in post.Replies)
+            {
+                this.Data.Replies.Delete(reply);
+            }
+
             this.Data.Posts.Delete(post);
             this.Data.SaveChanges();
 
