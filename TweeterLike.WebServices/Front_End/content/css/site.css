@@ -1,0 +1,125 @@
+﻿body {
+   padding-top: 4%;
+}
+.main-content {
+    padding-top: 1%;
+}
+
+.form-login {
+    margin: 0 auto;
+    width: 25%;
+    text-align: center;
+    
+}
+
+.login {
+    padding-bottom: 6.5%;
+}
+
+.bigger-font {
+    font-size: 15px;
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.home-header {
+    margin-bottom: 40px;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+
+.form-login input {
+    text-align:center;
+}
+
+#footer {
+    height: 50px;
+}
+
+.li-tweet {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.post-tweet-form {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+}
+
+.tweets-list {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.post-tweet-message {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.tweet-btn {
+    width: 40%;
+}
+
+.your-tweets-hr {
+    width: 80%;
+}
+
+.created-at {
+    display: inline-block;
+    float: right;
+}
+
+.tweet-title {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.main-my-profile-content {
+    margin: 0 auto;
+    width: 20%;
+}
+
+.profile-actions {
+    width: 20%;
+}
+
+.profile-actions-btns {
+    float: right;
+}
+
+.delete-paragraph {
+    margin-top: 22px;
+}
+
+.change-password-form {
+    margin-top: 25px;
+}
+
+.my-profile-panels {
+    margin-top: 20px;
+}
+
+.profil-actions-div {
+    margin-top: 20px !important;
+}
+
+.tweet-post-title, .tweet-post-content{
+    width: 40%;
+}

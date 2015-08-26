@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="panel-group my-profile-panels">
+        <div class="panel panel-info">
+            <div class="panel-heading"><b>Profile info</b></div>
+            <div class="panel-body">    
+                <p><b>Username:</b> {{userInfo.Username}}</p>
+                <p><b>Email address:</b> {{userInfo.Email}}</p>
+                <p><b>Registered on:</b> {{userInfo.CreatedOn}}</p>            
+            </div>
+            </div>
+        <div class="panel panel-info profil-actions-div">
+            <div class="panel-heading"><b>Profile actions</b></div>
+            <div class="panel-body">
+                <p class="profile-actions"><b>Change your password</b><button class="btn btn-success profile-actions-btns" data-ng-click="showChangePassword()">GO</button></p>
+                <form ng-show="showChangePasswordForm" class="change-password-form">
+                    <label>Current password:</label>
+                    <input type="password" name="oldPassword" value="" data-ng-model="newPassword.OldPassword" />
+                    <label>New Password:</label>
+                    <input type="password" name="newPassword" value="" data-ng-model="newPassword.NewPassword" />
+                    <label>Confirm the new password:</label>
+                    <input type="password" name="newPasswordConfirm" value="" data-ng-model="newPassword.ConfirmPassword" />
+                    <button type="submit" class="btn btn-success" data-ng-click="changePassword()">Submit</button>
+                    <div data-ng-hide="changePasswordMessage == ''"
+                         data-ng-class="(changePasswordSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                        {{changePasswordMessage}}
+                    </div>
+                </form>
+                <p class="profile-actions delete-paragraph"><b>Delete your account</b><button type="submit" class="btn btn-danger profile-actions-btns" ng-click="deleteUser()">Delete</button></p>
+            </div>
+        </div>
+    </div>
+    
+
+    <ul class="tweets-list" ng-hide="true">
+        <li class="li-tweet" ng-repeat="following in (usersYouAreFollowing = (tweets | filter: query))">
+    </ul>
+    <p>{{usersYouAreFollowing.length}}</p>
+</body>
+</html>
