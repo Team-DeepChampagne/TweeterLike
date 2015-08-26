@@ -1,17 +1,19 @@
 ﻿namespace TweeterLike.WebServices.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http;
     using System.Web.Routing;
     using Microsoft.AspNet.Identity;
     using Models.BindingModels;
     using Models.ViewModels;
+    
 
     public class FollowController : BaseApplicationController
     {
         [Authorize]
         // api/Follow?Username={Username}
-        public IHttpActionResult GetFollowUser([FromUri]FollowBindingModel model)
+        public IHttpActionResult PostFollowUser([FromUri]FollowBindingModel model)
         {
             if (model == null)
             {
@@ -53,33 +55,56 @@
         [Route("api/FollowedBy")]
         public IHttpActionResult GetAllFollowedUsers()
         {
-            var followedUsers = this.Data.ApplicationUsers
-                .GetById(this.User.Identity.GetUserId());
+            var followedUsersFiew = GetAllFollowedUsersEnumeration();
+            return this.Ok(followedUsersFiew);
+        }
 
-            var followedView = followedUsers.Followed
-                .Select(u => UserProfileViewModel.Create);
-
-            return this.Ok(followedView);
+        [Authorize]
+        [Route("api/FollowedBy/Count")]
+        public IHttpActionResult GetAllFollowedUsersCount()
+        {
+            var followedUsersFiew = GetAllFollowedUsersEnumeration();
+            return this.Ok(followedUsersFiew.Count());
         }
 
         [Authorize]
         [Route("api/Following")]
         public IHttpActionResult GetAllFollowingUsers()
         {
+            var followingUsersView = GetAllFollowingUsersEnumeration();
+            return this.Ok(followingUsersView);
+        }
+
+        [Authorize]
+        [Route("api/Following/Count")]
+        public IHttpActionResult GetFollowingUsersCount()
+        {
+            var followingUsersView = GetAllFollowingUsersEnumeration();
+            return this.Ok(followingUsersView.Count());             
+        }
+
+        private IEnumerable<UserProfileViewModel> GetAllFollowingUsersEnumeration(){
+           var followedUsers = this.Data.ApplicationUsers
+                .GetById(this.User.Identity.GetUserId());
+
+            var followedView = followedUsers.Following
+                .AsQueryable()
+                .Select(UserProfileViewModel.Create);
+
+            return followedView;
+            
+        }
+
+        private IEnumerable<UserProfileViewModel> GetAllFollowedUsersEnumeration()
+        {
             var followedUsers = this.Data.ApplicationUsers
                 .GetById(this.User.Identity.GetUserId());
 
-            // For some reason using Expression breaks it.
-            var followedView = followedUsers.Following
-                .Select(u => new UserProfileViewModel()
-                {
-                    Posts = u.Posts.Select(p => p.Title),
-                    Username = u.UserName,
-                    CreatedOn = u.CreatedOn,
-                    Email = u.Email
-                });
+            var followedView = followedUsers.Followed
+                .AsQueryable()
+                .Select(UserProfileViewModel.Create);
 
-            return this.Ok(followedView);
+            return followedView;
         }
     }
 }
