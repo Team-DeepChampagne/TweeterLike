@@ -43,6 +43,26 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/user-profile.html"
     });
 
+    $routeProvider.when("/logged-user-followings", {
+        controller: "loggedUserFollowingsController",
+        templateUrl: "app/views/logged-user-followings.html"
+    });
+
+    $routeProvider.when("/user-followings", {
+        controller: "userFollowingsController",
+        templateUrl: "app/views/user-followings.html"
+    });
+
+    $routeProvider.when("/logged-user-followed-by", {
+        controller: "loggedUserFollowedByController",
+        templateUrl: "app/views/logged-user-followed-by.html"
+    });
+
+    $routeProvider.when("/user-followed-by", {
+        controller: "userFollowedByController",
+        templateUrl: "app/views/user-followed-by.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/home" });
 });
 

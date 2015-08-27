@@ -249,6 +249,10 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Front_End\app\app.js" />
+    <Content Include="Front_End\app\controllers\loggedUserFollowedByController.js" />
+    <Content Include="Front_End\app\controllers\userFollowedByController.js" />
+    <Content Include="Front_End\app\controllers\userFollowingsController.js" />
+    <Content Include="Front_End\app\controllers\loggedUserFollowingsController.js" />
     <Content Include="Front_End\app\controllers\homeController.js" />
     <Content Include="Front_End\app\controllers\indexController.js" />
     <Content Include="Front_End\app\controllers\loginController.js" />
@@ -260,6 +264,10 @@
     <Content Include="Front_End\app\controllers\userSearchController.js" />
     <Content Include="Front_End\app\services\authInterceptorService.js" />
     <Content Include="Front_End\app\services\authService.js" />
+    <Content Include="Front_End\app\views\logged-user-followed-by.html" />
+    <Content Include="Front_End\app\views\user-followed-by.html" />
+    <Content Include="Front_End\app\views\user-followings.html" />
+    <Content Include="Front_End\app\views\logged-user-followings.html" />
     <Content Include="Front_End\app\views\home.html" />
     <Content Include="Front_End\app\views\login.html" />
     <Content Include="Front_End\app\views\my-profile.html" />

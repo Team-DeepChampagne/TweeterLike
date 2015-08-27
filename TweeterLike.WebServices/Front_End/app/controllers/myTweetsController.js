@@ -53,21 +53,29 @@ app.controller('myTweetsController', ['$scope', '$location',
     };
 
     
-    $http.get(serviceBase + 'api/Following/Count').then(function (response) {
+    $http.get(serviceBase + 'api/Following/Count', { params: { username: currentUsername } }).then(function (response) {
         $scope.followingInfo = response;
         $scope.followingCount = $scope.followingInfo.data;
     },
-    function (response) {
-            
-    });
+     function (response) {
 
-    $http.get(serviceBase + 'api/FollowedBy/Count').then(function (response) {
+     });
+
+    $http.get(serviceBase + 'api/FollowedBy/Count', { params: { username: currentUsername } }).then(function (response) {
         $scope.followedByInfo = response;
         $scope.followedByCount = $scope.followedByInfo.data;
     },
     function (response) {
 
     });
+
+    $scope.showLoggedUserFollowing = function () {
+        $location.path('/logged-user-followings');
+    };
+
+    $scope.showLoggedUserFollowedBy = function () {
+        $location.path('/logged-user-followed-by');
+    };
     
   
 }]);

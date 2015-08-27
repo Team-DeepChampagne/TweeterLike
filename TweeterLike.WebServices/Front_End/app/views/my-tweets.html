@@ -4,8 +4,8 @@
     <title></title>
 </head>
 <body>   
-    Following: {{followingCount}}
-    Followed By: {{followedByCount}}
+    Following: <a ng-click="showLoggedUserFollowing()">{{followingCount}}</a>
+    Followed By: <a ng-click="showLoggedUserFollowedBy()">{{followedByCount}}</a>
     <form role="form" class="post-tweet-form">
         <h3>Let's tweet!</h3>
         <div class="form-group">
@@ -25,7 +25,7 @@
     </ul>
     <ul class="tweets-list">
         <li class="li-tweet"><h4>Your tweets</h4></li>
-        <hr class="your-tweets-hr"/>
+        <hr class="your-tweets-hr" />
         <li class="li-tweet" ng-show="totalTweetsLoader.length == 0"><h4>You don't have tweets yet!</h4></li>
         <li class="li-tweet" ng-repeat="tweet in (tweetsLoader = (tweets | filter: query | limitTo:feedLimit))">
             <div class="panel panel-default">
@@ -41,7 +41,7 @@
         </li>
     </ul>
 
-   
+
 
 </body>
 </html>

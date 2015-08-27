@@ -31,7 +31,7 @@ app.controller('userProfileController', ['$rootScope', '$scope', '$location',
     };
 
 
-    $http.get(serviceBase + 'api/Following/Count').then(function (response) {
+    $http.get(serviceBase + 'api/Following/Count', { params: {username: $scope.foundUser}}).then(function (response) {
         $scope.followingInfo = response;
         $scope.followingCount = $scope.followingInfo.data;
     },
@@ -39,12 +39,21 @@ app.controller('userProfileController', ['$rootScope', '$scope', '$location',
 
     });
 
-    $http.get(serviceBase + 'api/FollowedBy/Count').then(function (response) {
+    $http.get(serviceBase + 'api/FollowedBy/Count', { params: {username: $scope.foundUser}}).then(function (response) {
         $scope.followedByInfo = response;
         $scope.followedByCount = $scope.followedByInfo.data;
     },
     function (response) {
 
     });
+
+    $scope.showUserFollowings = function () {
+        $location.path('/user-followings');
+    };
+
+    $scope.showUserFollowedBy = function () {
+        $location.path('/user-followed-by');
+    };
+
    
 }]);
