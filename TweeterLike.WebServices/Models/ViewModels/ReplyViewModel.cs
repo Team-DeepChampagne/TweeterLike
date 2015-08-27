@@ -9,6 +9,8 @@ namespace TweeterLike.WebServices.Models.ViewModels
 {
     public class ReplyViewModel
     {
+        public int Id { get; set; }
+
         public string AuthorName { get; set; }
 
         public string Comment { get; set; }
@@ -23,6 +25,7 @@ namespace TweeterLike.WebServices.Models.ViewModels
             {
                 return r => new ReplyViewModel()
                 {
+                    Id = r.Id,
                     AuthorName = r.Author.UserName,
                     Comment = r.Comment,
                     CreateAt = r.CreatedAt,
