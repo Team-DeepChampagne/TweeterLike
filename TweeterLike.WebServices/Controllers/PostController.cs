@@ -94,5 +94,15 @@
 
             return this.Ok();
         }
+
+        [Authorize]
+        public IHttpActionResult GetAllPostsForFollowingUsers()
+        {
+            var postsView = this.Data.ApplicationUsers.GetById(this.User.Identity.GetUserId())
+                .Following.SelectMany(u=>u.Posts)
+                .AsQueryable().Select(PostViewModel.Create);
+
+            return this.Ok(postsView);
+        }
     }
 }
