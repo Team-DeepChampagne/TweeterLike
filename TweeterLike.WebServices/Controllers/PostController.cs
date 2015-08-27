@@ -68,8 +68,31 @@
 
             return this.Ok(userPostsViewModel);
         }
-    }
 
-    
-    
+        [Authorize]
+        public IHttpActionResult DeletePost(int id)
+        {
+            var post = this.Data.Posts.GetById(id);
+
+            if (post == null)
+            {
+                return this.BadRequest("No such post");
+            }
+
+            if (this.User.Identity.Name != post.Author.UserName)
+            {
+                return this.BadRequest("Can't delete post that is not yours");
+            }
+
+            foreach (var reply in post.Replies)
+            {
+                this.Data.Replies.Delete(reply);
+            }
+
+            this.Data.Posts.Delete(post);
+            this.Data.SaveChanges();
+
+            return this.Ok();
+        }
+    }
 }

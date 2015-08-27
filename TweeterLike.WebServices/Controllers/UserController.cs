@@ -30,6 +30,7 @@
             return this.Ok(userViewModel);
         }
 
+        [Authorize]
         // api/User?username={username}
         public IHttpActionResult DeleteUser(string username)
         {
@@ -45,8 +46,12 @@
             return this.Ok();
         }
 
+<<<<<<< HEAD
 
         //api/User?partialName={partialName}
+=======
+        [Authorize]
+>>>>>>> 9645ba2f0e6fbdc28a1feb285031c6f3f8456d4f
         public IHttpActionResult GetSearchUsers(string partialName)
         {
             var users = this.Data.ApplicationUsers.Find(u => u.UserName.Contains(partialName)).Select(UserProfileViewModel.Create);
