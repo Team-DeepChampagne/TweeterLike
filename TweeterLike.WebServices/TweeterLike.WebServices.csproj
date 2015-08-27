@@ -254,6 +254,7 @@
     <Content Include="Front_End\app\controllers\signupController.js" />
     <Content Include="Front_End\app\controllers\tweetsFeedController.js" />
     <Content Include="Front_End\app\controllers\userProfileController.js" />
+    <Content Include="Front_End\app\controllers\userSearchController.js" />
     <Content Include="Front_End\app\services\authInterceptorService.js" />
     <Content Include="Front_End\app\services\authService.js" />
     <Content Include="Front_End\app\views\home.html" />
@@ -263,6 +264,7 @@
     <Content Include="Front_End\app\views\signup.html" />
     <Content Include="Front_End\app\views\tweets-feed.html" />
     <Content Include="Front_End\app\views\user-profile.html" />
+    <Content Include="Front_End\app\views\user-search.html" />
     <Content Include="Front_End\content\css\bootstrap.min.css" />
     <Content Include="Front_End\content\css\loading-bar.css" />
     <Content Include="Front_End\content\css\site.css" />

@@ -46,13 +46,14 @@
         }
 
 
+        //api/User?partialName={partialName}
         public IHttpActionResult GetSearchUsers(string partialName)
         {
             var users = this.Data.ApplicationUsers.Find(u => u.UserName.Contains(partialName)).Select(UserProfileViewModel.Create);
             
             if (!users.Any())
             {
-                return this.NotFound();
+                return this.Ok(new string [] {});
             }
    
             return this.Ok(users);

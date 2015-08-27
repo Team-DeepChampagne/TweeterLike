@@ -4,11 +4,26 @@
     <title></title>
 </head>
 <body>
+    <div>
+        <ul ng-hide="true">
+            <li ng-repeat="user in (totalFoundUsers = (foundUsers | filter: query))">
+        </ul>
+        <input type="text" name="name" value=" " ng-model="searchedUser" />
+        <button type="submit" ng-click="findUsers()">Search</button>
+        <ul>
+            <li ng-repeat="user in foundUsers">
+                <a ng-click="getUserTweets(user.Username)">{{user.Username}}</a>
+            </li>
+            <li ng-if="totalFoundUsers.length==0">No results found! </li>
+        </ul>
+    </div>
+
+    <!--User tweets-->
     <ul class="tweets-list" ng-hide="true">
         <li class="li-tweet" ng-repeat="tweet in (totalFoundUserTweets = (foundUserTweets | filter: query))">
     </ul>
 
-    <ul class="tweets-list">
+    <ul class="tweets-list" ng-show="userClicked">
         <li class="li-tweet"><h4>{{foundUser}}'s tweets</h4></li>
         <hr class="your-tweets-hr" />
         <li class="li-tweet" ng-show="totalFoundUserTweets.length == 0"><h4>{{foundUser}} has no tweets yet!</h4></li>
@@ -25,5 +40,6 @@
             <button ng-hide="foundUserCurrentTweets.length == totalFoundUserTweets.length" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
         </li>
     </ul>
+
 </body>
 </html>

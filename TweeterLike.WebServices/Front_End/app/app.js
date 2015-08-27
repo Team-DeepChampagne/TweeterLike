@@ -33,6 +33,11 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/my-profile.html"
     });
 
+    $routeProvider.when("/user-search", {
+        controller: "userSearchController",
+        templateUrl: "app/views/user-search.html"
+    });
+
     $routeProvider.when("/user-profile", {
         controller: "userProfileController",
         templateUrl: "app/views/user-profile.html"

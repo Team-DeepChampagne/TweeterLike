@@ -38,6 +38,7 @@ app.controller('myTweetsController', ['$scope', '$location',
                 Title: "",
                 Comment: ""
             };
+
             return response;
         },
 
@@ -49,7 +50,7 @@ app.controller('myTweetsController', ['$scope', '$location',
                  Comment: ""
              };
          });
-    }
+    };
 
     $scope.formatDate = function (tweet) {
         var sqlDateTimeArr = tweet.CreateAt.split("T");
@@ -63,7 +64,7 @@ app.controller('myTweetsController', ['$scope', '$location',
         var minutes = timeSplit[1];
         var seconds = timeSplit[2];
         return tweet.CreateAt = date + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
-    }
+    };
     
   
 }]);
