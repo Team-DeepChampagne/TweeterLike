@@ -53,41 +53,65 @@
 
         [Authorize]
         [Route("api/FollowedBy")]
-        public IHttpActionResult GetAllFollowedUsers()
+        public IHttpActionResult GetAllFollowedUsers(string username)
         {
-            var followedUsersFiew = GetAllFollowedUsersEnumeration();
+            var followedUsersFiew = GetAllFollowedUsersEnumeration(username);
+            if (followedUsersFiew == null)
+            {
+                return this.BadRequest("No such user");
+            }
+
             return this.Ok(followedUsersFiew);
         }
 
         [Authorize]
         [Route("api/FollowedBy/Count")]
-        public IHttpActionResult GetAllFollowedUsersCount()
+        public IHttpActionResult GetAllFollowedUsersCount(string username)
         {
-            var followedUsersFiew = GetAllFollowedUsersEnumeration();
+            var followedUsersFiew = GetAllFollowedUsersEnumeration(username);
+            if (followedUsersFiew == null)
+            {
+                return this.BadRequest("No such user");
+            }
+
             return this.Ok(followedUsersFiew.Count());
         }
 
         [Authorize]
         [Route("api/Following")]
-        public IHttpActionResult GetAllFollowingUsers()
+        public IHttpActionResult GetAllFollowingUsers(string username)
         {
-            var followingUsersView = GetAllFollowingUsersEnumeration();
+            var followingUsersView = GetAllFollowingUsersEnumeration(username);
+            if (followingUsersView == null)
+            {
+                return this.BadRequest("No such user");
+            }
+
             return this.Ok(followingUsersView);
         }
 
         [Authorize]
         [Route("api/Following/Count")]
-        public IHttpActionResult GetFollowingUsersCount()
+        public IHttpActionResult GetFollowingUsersCount(string username)
         {
-            var followingUsersView = GetAllFollowingUsersEnumeration();
+            var followingUsersView = GetAllFollowingUsersEnumeration(username);
+            if (followingUsersView == null)
+            {
+                return this.BadRequest("No such user");
+            }
+
             return this.Ok(followingUsersView.Count());             
         }
 
-        private IEnumerable<UserProfileViewModel> GetAllFollowingUsersEnumeration(){
-           var followedUsers = this.Data.ApplicationUsers
-                .GetById(this.User.Identity.GetUserId());
+        private IEnumerable<UserProfileViewModel> GetAllFollowingUsersEnumeration(string username){
+            var followingUsers = this.Data.ApplicationUsers.Find(u => u.UserName == username).FirstOrDefault();
 
-            var followedView = followedUsers.Following
+            if (followingUsers == null)
+            {
+                return null;
+            }
+
+            var followedView = followingUsers.Following
                 .AsQueryable()
                 .Select(UserProfileViewModel.Create);
 
@@ -95,10 +119,14 @@
             
         }
 
-        private IEnumerable<UserProfileViewModel> GetAllFollowedUsersEnumeration()
+        private IEnumerable<UserProfileViewModel> GetAllFollowedUsersEnumeration(string username)
         {
-            var followedUsers = this.Data.ApplicationUsers
-                .GetById(this.User.Identity.GetUserId());
+            var followedUsers = this.Data.ApplicationUsers.Find(u => u.UserName == username).FirstOrDefault();
+
+            if (followedUsers == null)
+            {
+                return null;
+            }
 
             var followedView = followedUsers.Followed
                 .AsQueryable()
