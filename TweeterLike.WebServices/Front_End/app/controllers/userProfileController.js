@@ -11,8 +11,7 @@ app.controller('userProfileController', ['$rootScope', '$scope', '$location',
     $scope.showMore = function () {
         $scope.feedLimit += 5;
     }
-  
-   
+
     $http({
         method: 'GET',
         url: serviceBase + 'api/post',
@@ -21,5 +20,31 @@ app.controller('userProfileController', ['$rootScope', '$scope', '$location',
         $scope.foundUserTweets = result;
     });
    
+    $scope.followUser = function () {
+        $http({
+            method: 'POST',
+            url: serviceBase + 'api/Follow',
+            params: { username: $scope.foundUser }
+        }).success(function (result) {
+           
+        });
+    };
+
+
+    $http.get(serviceBase + 'api/Following/Count').then(function (response) {
+        $scope.followingInfo = response;
+        $scope.followingCount = $scope.followingInfo.data;
+    },
+    function (response) {
+
+    });
+
+    $http.get(serviceBase + 'api/FollowedBy/Count').then(function (response) {
+        $scope.followedByInfo = response;
+        $scope.followedByCount = $scope.followedByInfo.data;
+    },
+    function (response) {
+
+    });
    
 }]);

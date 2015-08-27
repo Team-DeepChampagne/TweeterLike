@@ -8,6 +8,9 @@
         <li class="li-tweet" ng-repeat="tweet in (totalFoundUserTweets = (foundUserTweets | filter: query))">
     </ul>
 
+    <button type="submit" ng-click="followUser()">Follow</button>
+    Following: {{followingCount}}
+    Followed By: {{followedByCount}}
     <ul class="tweets-list">
         <li class="li-tweet"><h4>{{foundUser}}'s tweets</h4></li>
         <hr class="your-tweets-hr" />
@@ -25,5 +28,6 @@
             <button ng-hide="foundUserCurrentTweets.length == totalFoundUserTweets.length" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
         </li>
     </ul>
+
 </body>
 </html>
