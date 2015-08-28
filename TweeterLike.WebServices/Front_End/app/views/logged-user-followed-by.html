@@ -7,7 +7,7 @@
     <p>You are followed by: </p>
     <ul>
         <li ng-repeat="user in loggedUserFollowedBy">
-            {{user.Username}}
+            <a ng-click="getUserTweets(user.Username)">{{user.Username}}</a>
         </li>
     </ul>
 </body>

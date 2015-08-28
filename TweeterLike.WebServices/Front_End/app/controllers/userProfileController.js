@@ -7,10 +7,16 @@ app.controller('userProfileController', ['$rootScope', '$scope', '$location',
     var currentUsername = authService.authentication.userName;
     $scope.feedLimit = 5;
     $scope.foundUser = $rootScope.foundUser;
+    $scope.seeReplyForm = false;
+    $scope.seeComments = false;
 
     $scope.showMore = function () {
         $scope.feedLimit += 5;
     }
+
+    $scope.newReply = {
+        Comment: ""
+    };
 
     $http({
         method: 'GET',
@@ -53,6 +59,27 @@ app.controller('userProfileController', ['$rootScope', '$scope', '$location',
 
     $scope.showUserFollowedBy = function () {
         $location.path('/user-followed-by');
+    };
+
+    $scope.postReply = function (currentPostId) {
+        $http.post(serviceBase + 'api/reply', $scope.newReply, { params: { postId: currentPostId } }).then(function (response) {
+            $scope.newReply = {
+                Comment: ""
+            };
+        },
+       function (response) {
+
+       });
+    };
+
+    $scope.getReplies = function (currentPostId) {
+        $http({
+            method: 'GET',
+            url: serviceBase + 'api/reply/',
+            params: { postId: currentPostId }
+        }).success(function (result) {
+            $scope.replies = result;
+        });
     };
 
    

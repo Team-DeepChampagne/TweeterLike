@@ -7,7 +7,7 @@
     <p>{{foundUser}} is following: </p>
     <ul>
         <li ng-repeat="user in userFollowings">
-            {{user.Username}}
+            <a ng-click="getUserTweets(user.Username)">{{user.Username}}</a>
         </li>
     </ul>
 </body>

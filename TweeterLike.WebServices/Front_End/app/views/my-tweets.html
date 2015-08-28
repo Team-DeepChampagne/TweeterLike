@@ -34,14 +34,27 @@
                     <h6 class="created-at">Created at: {{tweet.CreateAt}}</h6>
                 </div>
                 <div class="panel-body">{{tweet.Comment}}</div>
+                <a ng-click="deletePost(tweet.Id)">Delete</a>
+            </div>
+            <button type="submit" ng-click="seeComments = !seeComments; getReplies(tweet.Id)">Comments</button>
+            <div ng-show="seeComments">
+                <ul>
+                    <li ng-repeat="reply in replies">      
+                        {{reply.AuthorName}} =>
+                        {{reply.Comment}} =>
+                        {{reply.CreateAt}}
+                    </li>
+                </ul>
+            </div>
+            <button type="submit" ng-click="seeReplyForm = !seeReplyForm">Reply to this tweet</button>
+            <div ng-show="seeReplyForm">
+                <textarea ng-model="newReply.Comment">Post reply</textarea>
+                <button type="submit" ng-click="postReply(tweet.Id)">Reply</button>
             </div>
         </li>
         <li class="li-tweet">
             <button ng-hide="tweetsLoader.length == totalTweetsLoader.length" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
         </li>
     </ul>
-
-
-
 </body>
 </html>

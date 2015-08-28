@@ -1,16 +1,25 @@
 ﻿'use strict';
 app.controller('myTweetsController', ['$scope', '$location',
-'authService', '$http', function ($scope, $location, authService, $http) {
+'authService', '$http', '$route', function ($scope, $location, authService, $http, $route) {
 
     var serviceBase = 'http://localhost:16270/';
 
     $scope.postTweetMessage = "";
     $scope.postedTweetSuccessfully = false;
+    $scope.deleteTweetMessage = "";
+    $scope.deletedTweetSuccessfully = false;
     $scope.feedLimit = 5;
+    $scope.seeReplyForm = false;
+    $scope.seeComments = false;
+
     var currentUsername = authService.authentication.userName;
 
     $scope.newTweet = {
         Title: "",
+        Comment: ""
+    };
+
+    $scope.newReply = {
         Comment: ""
     };
 
@@ -39,7 +48,7 @@ app.controller('myTweetsController', ['$scope', '$location',
                 Comment: ""
             };
 
-            return response;
+            $route.reload(); 
         },
 
          function (response) {
@@ -76,6 +85,42 @@ app.controller('myTweetsController', ['$scope', '$location',
     $scope.showLoggedUserFollowedBy = function () {
         $location.path('/logged-user-followed-by');
     };
-    
-  
+
+    $scope.deletePost = function (id) {
+
+        var confirmation = confirm('Are you sure you want to delete this tweet?');
+
+        if (confirmation) {
+            $http({
+                method: 'DELETE',
+                url: serviceBase + 'api/post/' + id
+            }).success(function (result) {
+                $scope.deleteTweetMessage = "Tweet deleted!";
+                $scope.deletedTweetSuccessfully = true;
+                $route.reload();
+            });
+        }
+    };
+
+    $scope.postReply = function (currentPostId) {
+        $http.post(serviceBase + 'api/reply', $scope.newReply, { params: { postId: currentPostId } }).then(function (response) {
+            $scope.newReply = {
+                Comment: ""
+            };
+        },
+       function (response) {
+
+       });
+    };
+
+    $scope.getReplies = function (currentPostId) {
+        $http({
+            method: 'GET',
+            url: serviceBase + 'api/reply/',
+            params: { postId: currentPostId }
+        }).success(function (result) {
+            $scope.replies = result;
+        });
+    };
+
 }]);

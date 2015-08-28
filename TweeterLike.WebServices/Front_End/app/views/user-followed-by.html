@@ -7,7 +7,7 @@
     <p>{{foundUser}} is followed by: </p>
     <ul>
         <li ng-repeat="user in userFollowedBy">
-            {{user.Username}}
+            <a ng-click="getUserTweets(user.Username)">{{user.Username}}</a>
         </li>
     </ul>
 </body>

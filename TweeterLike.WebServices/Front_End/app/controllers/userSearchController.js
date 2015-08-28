@@ -23,6 +23,6 @@ app.controller('userSearchController', ['$rootScope', '$scope', '$location',
         } else {
             $location.path('/user-profile');
         }
-    }
+    };
 
 }]);

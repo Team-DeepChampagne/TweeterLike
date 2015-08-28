@@ -99,7 +99,7 @@
         public IHttpActionResult GetAllPostsForFollowingUsers()
         {
             var postsView = this.Data.ApplicationUsers.GetById(this.User.Identity.GetUserId())
-                .Following.SelectMany(u=>u.Posts)
+                .Following.SelectMany(u=>u.Posts).OrderByDescending(u => u.CreatedAt)
                 .AsQueryable().Select(PostViewModel.Create);
 
             return this.Ok(postsView);

@@ -15,4 +15,13 @@ app.controller('loggedUserFollowedByController', ['$rootScope', '$scope', '$loca
 
     });
 
+    $scope.getUserTweets = function (foundUser) {
+        $rootScope.foundUser = foundUser;
+        if (currentUsername == foundUser) {
+            $location.path('/my-tweets');
+        } else {
+            $location.path('/user-profile');
+        }
+    };
+
 }]);
