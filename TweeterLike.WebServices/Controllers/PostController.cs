@@ -7,10 +7,22 @@
     using Models.ViewModels;
     using TweeterLike.Models.DbModels;
     using System.Linq;
+    using Data.DataLayer;
+    using Infrastructure;
 
     [RoutePrefix("api/post")]
     public class PostController : BaseApplicationController
     {
+        public PostController()
+            : base()
+        {
+        }
+
+        public PostController(ITweeterLikeData tweeterLikeData, IUserIdProvider idProvider)
+            : base(tweeterLikeData, idProvider)
+        {
+        }
+
         // api/post
         [Authorize]
         public IHttpActionResult PostAddNewPost(NewPostBindingModel model)
@@ -25,7 +37,7 @@
                 return this.BadRequest(this.ModelState);
             }
 
-            var user = this.Data.ApplicationUsers.GetById(this.User.Identity.GetUserId());
+            var user = this.Data.ApplicationUsers.GetById(this.UserIdProvider.GetUserId());
             var post = new Post()
             {
                 Title = model.Title,
@@ -34,16 +46,17 @@
                 Author = user
             };
 
+            this.Data.Posts.Add(post);
+            this.Data.SaveChanges();
+
             var postView = new PostViewModel()
             {
+                Id = post.Id,
                 AuthorName = post.Author.UserName,
                 Title = post.Title,
                 Comment = post.Comment,
-                CreateAt = post.CreatedAt
+                CreateAt = post.CreatedAt,
             };
-
-            this.Data.Posts.Add(post);
-            this.Data.SaveChanges();
             return this.Ok(postView);
         }
 
@@ -55,7 +68,7 @@
 
             if (user == null)
             {
-                return this.BadRequest("No such user");
+                return this.BadRequest(Messege.NoSuchUser);
             }
 
             var userPosts = user.Posts.OrderByDescending(p => p.CreatedAt).AsQueryable();
@@ -76,12 +89,12 @@
 
             if (post == null)
             {
-                return this.BadRequest("No such post");
+                return this.BadRequest(Messege.NoSuchPostError);
             }
 
-            if (this.User.Identity.Name != post.Author.UserName)
+            if (this.UserIdProvider.GetUserId() != post.Author.Id)
             {
-                return this.BadRequest("Can't delete post that is not yours");
+                return this.BadRequest(Messege.NotYourPostError);
             }
 
             foreach (var reply in post.Replies)
@@ -98,9 +111,13 @@
         [Authorize]
         public IHttpActionResult GetAllPostsForFollowingUsers()
         {
-            var postsView = this.Data.ApplicationUsers.GetById(this.User.Identity.GetUserId())
-                .Following.SelectMany(u=>u.Posts).OrderByDescending(u => u.CreatedAt)
-                .AsQueryable().Select(PostViewModel.Create);
+            var postsView = this.Data.ApplicationUsers
+                .GetById(this.UserIdProvider.GetUserId())
+                .Following
+                .SelectMany(u => u.Posts)
+                .OrderByDescending(u => u.CreatedAt)
+                .AsQueryable()
+                .Select(PostViewModel.Create);
 
             return this.Ok(postsView);
         }

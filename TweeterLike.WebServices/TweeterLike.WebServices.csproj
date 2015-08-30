@@ -229,10 +229,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AspNetUserIdProvider.cs" />
+    <Compile Include="Infrastructure\IUserIdProvider.cs" />
+    <Compile Include="Infrastructure\Messege.cs" />
     <Compile Include="Models\BindingModels\AccountBindingModels.cs" />
     <Compile Include="Models\BindingModels\FollowBindingModel.cs" />
     <Compile Include="Models\BindingModels\NewPostBindingModel.cs" />
     <Compile Include="Models\BindingModels\NewReplyBindingModel.cs" />
+    <Compile Include="Models\JsonDeserializeModels\JsonMessegeModel.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\PostViewModel.cs" />
     <Compile Include="Models\ViewModels\ReplyViewModel.cs" />
