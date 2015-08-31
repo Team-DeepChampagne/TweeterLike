@@ -1,16 +1,29 @@
 ﻿namespace TweeterLike.WebServices.Controllers
 {
-    using System.Collections.Generic;
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
     using System.Web.Http;
+    using Data.DataLayer;
+    using Infrastructure;
     using Microsoft.AspNet.Identity;
     using Models.BindingModels;
     using Models.ViewModels;
     using TweeterLike.Models.DbModels;
-    using System.Linq;
 
     [RoutePrefix("api/reply")]
     public class ReplyController : BaseApplicationController
     {
+        public ReplyController()
+            : base()
+        {
+        }
+
+        public ReplyController(ITweeterLikeData tweeterLikeData, IUserIdProvider idProvider)
+            : base(tweeterLikeData, idProvider)
+        {
+        }
+
         //POST api/reply?postId=
         [Authorize]
         public IHttpActionResult PostAddNewReply(int postId, NewReplyBindingModel model)
@@ -19,7 +32,7 @@
 
             if (post == null)
             {
-                return this.BadRequest("No such post");
+                return this.BadRequest(Messege.NoSuchPostError);
             }
 
             if (model == null)
@@ -62,11 +75,15 @@
 
             if (post == null)
             {
-                return this.BadRequest("No such post");
+                return this.BadRequest(Messege.NoSuchPostError);
             }
 
-            var postReplies = post.Replies.OrderByDescending(r => r.CreatedAt).AsQueryable();
-            var repliesView = postReplies.Select(ReplyViewModel.Create);
+            var postReplies = post.Replies
+                .OrderByDescending(r => r.CreatedAt)
+                .AsQueryable();
+            var repliesView = postReplies
+                .Select(ReplyViewModel.Create)
+                .ToList();
 
             return this.Ok(repliesView);
         }

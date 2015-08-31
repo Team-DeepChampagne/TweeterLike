@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using TweeterLike.Models.DbModels;
-
-namespace TweeterLike.WebServices.Models.ViewModels
+﻿namespace TweeterLike.WebServices.Models.ViewModels
 {
+    using System;
+    using System.Linq.Expressions;
+    using TweeterLike.Models.DbModels;
+
     public class ReplyViewModel
     {
         public int Id { get; set; }

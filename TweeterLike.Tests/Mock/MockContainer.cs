@@ -33,6 +33,12 @@
 
             // Post Delete test
             this.RepliesRepositoryMock.Setup(r => r.Delete(It.IsAny<Reply>()));
+            this.RepliesRepositoryMock.Setup(r => r.Add(It.IsAny<Reply>()))
+                .Callback((Reply r) =>
+                {
+                    fakeReplies.Add(r);
+                });
+            this.RepliesRepositoryMock.Setup(r => r.All()).Returns(fakeReplies.AsQueryable());
         }
 
         private void SetupPosts()
@@ -50,7 +56,7 @@
                 .Setup(p => p.All())
                 .Returns(fakePosts.AsQueryable());
 
-            // Post Delete when not owner
+            // Post Delete when not owner; Post Reply
             this.PostsRepositoryMock
                 .Setup(p => p.GetById(It.Is<int>(id => id == 2)))
                 .Returns(new Post()
@@ -62,13 +68,13 @@
                     Replies = new List<Reply>()
                 });
 
-            // Post Delete when owner
+            // Post Delete when owner; Get Replies; Post Reply
             this.PostsRepositoryMock
                 .Setup(p => p.GetById(It.Is<int>(id => id == 1)))
                 .Returns(new Post()
                 {
                     Id = 1,
-                    Author = new ApplicationUser() {UserName = "First", Id = "1"},
+                    Author = new ApplicationUser() { UserName = "First", Id = "1" },
                     Comment = "First",
                     Title = "First Title",
                     Replies = new List<Reply>()
@@ -78,6 +84,7 @@
                             Id = 1,
                             Author = new ApplicationUser() {UserName = "Second", Id = "2"},
                             Comment = "First reply",
+                            Post = new Post(){Id = 1}
                         }
                     }
                 });
@@ -104,6 +111,7 @@
                                 Id = 1,
                                 Author = new ApplicationUser() {UserName = "Second", Id = "2"},
                                 Comment = "First reply",
+                                Post = new Post(){Id=1}
                             }
                         }
                     },

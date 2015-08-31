@@ -80,6 +80,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\PostControllerTests.cs" />
+    <Compile Include="Controllers\ReplyControllerTests.cs" />
     <Compile Include="Mock\MockContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
