@@ -107,7 +107,7 @@
   <ItemGroup>
     <Compile Include="Controllers\PostControllerTests.cs" />
     <Compile Include="Controllers\ReplyControllerTests.cs" />
-    <Compile Include="IntergrationTests\ReplyIntergrationTests.cs" />
+    <Compile Include="IntergrationTests\IntergrationTests.cs" />
     <Compile Include="Mock\MockContainer.cs" />
     <Compile Include="Models\LoginDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
