@@ -9,6 +9,7 @@ app.controller('myTweetsController', ['$scope', '$location',
     $scope.deleteTweetMessage = "";
     $scope.deletedTweetSuccessfully = false;
     $scope.feedLimit = 5;
+    $scope.currentlyShown = 5;
     $scope.seeReplyForm = false;
     $scope.seeComments = false;
 
@@ -113,13 +114,13 @@ app.controller('myTweetsController', ['$scope', '$location',
        });
     };
 
-    $scope.getReplies = function (currentPostId) {
+    $scope.getReplies = function (currentPostId, tweet) {
         $http({
             method: 'GET',
             url: serviceBase + 'api/reply/',
             params: { postId: currentPostId }
         }).success(function (result) {
-            $scope.replies = result;
+            tweet.replies = result;
         });
     };
 
