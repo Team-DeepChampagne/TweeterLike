@@ -24,18 +24,19 @@
     <ul class="tweets-list">
         <li class="li-tweet"><h4>Your tweets</h4></li>
         <hr class="your-tweets-hr" />
-        <li class="li-tweet" ng-show="false"><h4>You don't have tweets yet!</h4></li>
+        <li class="li-tweet" ng-show="tweets.length == 0"><h4>You don't have tweets yet!</h4></li>
         <li class="li-tweet" ng-repeat="tweet in (tweets | limitTo:feedLimit )">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h6 class="tweet-title">{{tweet.Title}}</h6>
-                    <h6 class="created-at">Created at: {{tweet.CreateAt}}</h6>
+                    <h6 class="created-at"><i class="fa fa-calendar"></i> {{formatDate(tweet.CreateAt)}} <span class="glyphicon glyphicon-trash link delete-post" ng-click="deletePost(tweet.Id)"></span></h6>
                 </div>
                 <div class="panel-body">{{tweet.Comment}}</div>
-                <a ng-click="deletePost(tweet.Id)">Delete</a>
-                {{tweets.length}}
+                <div class="panel-footer">
+                    <i class="fa fa-comments fa-size link" ng-click="seeComments = !seeComments; getReplies(tweet.Id, tweet)"></i>
+                    <i class="fa fa-reply fa-size link" ng-click="seeReplyForm = !seeReplyForm"></i>
+                </div>
             </div>
-            <button type="submit" ng-click="seeComments = !seeComments; getReplies(tweet.Id, tweet)">Comments</button>
             <div ng-show="seeComments">
                 <ul>
                     <li ng-repeat="reply in tweet.replies">      
@@ -43,9 +44,9 @@
                         {{reply.Comment}} =>
                         {{reply.CreateAt}}
                     </li>
+                    <li ng-show="tweet.replies.length == 0">No replies yet!</li>  
                 </ul>
             </div>
-            <button type="submit" ng-click="seeReplyForm = !seeReplyForm">Reply to this tweet</button>
             <div ng-show="seeReplyForm">
                 <textarea ng-model="newReply.Comment">Post reply</textarea>
                 <button type="submit" ng-click="postReply(tweet.Id)">Reply</button>
