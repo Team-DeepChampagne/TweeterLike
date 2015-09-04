@@ -97,9 +97,16 @@
                 return this.BadRequest(Messege.NotYourPostError);
             }
 
+            List<Reply> repliesToRemove = new List<Reply>();
+
             foreach (var reply in post.Replies)
             {
-                this.Data.Replies.Delete(reply);
+                repliesToRemove.Add(reply);
+            }
+
+            foreach (var replyToRemove in repliesToRemove)
+            {
+                this.Data.Replies.Delete(replyToRemove);
             }
 
             this.Data.Posts.Delete(post);
