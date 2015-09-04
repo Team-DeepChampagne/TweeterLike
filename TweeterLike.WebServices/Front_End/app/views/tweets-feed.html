@@ -4,40 +4,40 @@
     <title></title>
 </head>
 <body>  
-    <ul class="tweets-list" ng-hide="true">
-        <li class="li-tweet" ng-repeat="tweet in (followingsTotalTweetsLoader = (followingsTweets | filter: query))">
-</ul>
     <ul class="tweets-list">
         <li class="li-tweet"><h4>Tweets</h4></li>
         <hr class="your-tweets-hr" />
-        <li class="li-tweet" ng-show="totalTweetsLoader.length == 0"><h4>You don't have tweets yet!</h4></li>
-        <li class="li-tweet" ng-repeat="tweet in (followingsTweetsLoader = (followingsTweets | filter: query | limitTo:feedLimit))">
+        <li class="li-tweet" ng-show="followingsTweets.length == 0"><h5>No tweets here yet! Follow someone to see his tweets here!</h5></li>
+        <li class="li-tweet" ng-repeat="tweet in (followingsTweets | limitTo:feedLimit)">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a ng-click="getUserTweets(tweet.AuthorName)"><h6>Author: {{tweet.AuthorName}}</h6></a>
                     <h6 class="tweet-title">{{tweet.Title}}</h6>
-                    <h6 class="created-at">Created at: {{tweet.CreateAt}}</h6>
+                    <h6 class="created-at"><a class="tweet-author" ng-click="getUserTweets(tweet.AuthorName)"><i class="fa fa-user fa-lg"></i> {{tweet.AuthorName}}</a><i class="fa fa-calendar"></i> {{formatDate(tweet.CreateAt)}}</h6>
+                   
                 </div>
                 <div class="panel-body">{{tweet.Comment}}</div>
+                <div class="panel-footer">
+                    <i class="fa fa-comments fa-size link" ng-click="seeComments = !seeComments; getReplies(tweet.Id, tweet)"></i>
+                    <i class="fa fa-reply fa-size link" ng-click="seeReplyForm = !seeReplyForm"></i>
+                </div>
             </div>
-            <button type="submit" ng-click="seeComments = !seeComments; getReplies(tweet.Id)">Comments</button>
             <div ng-show="seeComments">
                 <ul>
-                    <li ng-repeat="reply in replies">
+                    <li ng-repeat="reply in tweet.replies">
                         {{reply.AuthorName}} =>
                         {{reply.Comment}} =>
                         {{reply.CreateAt}}
                     </li>
+                    <li ng-show="tweet.replies.length == 0">No replies yet!</li>  
                 </ul>
             </div>
-            <button type="submit" ng-click="seeReplyForm = !seeReplyForm">Reply to this tweet</button>
             <div ng-show="seeReplyForm">
                 <textarea ng-model="newReply.Comment">Post reply</textarea>
                 <button type="submit" ng-click="postReply(tweet.Id)">Reply</button>
             </div>
         </li>
         <li class="li-tweet">
-            <button ng-hide="followingsTweetsLoader.length == followingsTotalTweetsLoader.length" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
+            <button ng-hide="feedLimit >= followingsTweets.length" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
         </li>
     </ul>
 

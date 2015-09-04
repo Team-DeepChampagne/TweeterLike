@@ -44,14 +44,29 @@ app.controller('tweetsFeedController', ['$scope', '$location',
        });
     };
 
-    $scope.getReplies = function (currentPostId) {
+    $scope.getReplies = function (currentPostId, tweet) {
         $http({
             method: 'GET',
             url: serviceBase + 'api/reply/',
             params: { postId: currentPostId }
         }).success(function (result) {
-            $scope.replies = result;
+            tweet.replies = result;
         });
+    };
+
+    $scope.formatDate = function (tweetDate) {
+        var sqlDateTimeArr = tweetDate.split("T");
+        var dateSplit = sqlDateTimeArr[0].split('-');
+        var year = dateSplit[0];
+        var month = dateSplit[1];
+        var date = dateSplit[2];
+        var timeWithMsSplit = sqlDateTimeArr[1].split(".");
+        var timeSplit = timeWithMsSplit[0].split(":");
+        var hours = timeSplit[0];
+        var minutes = timeSplit[1];
+        var seconds = timeSplit[2];
+        tweetDate = date + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+        return tweetDate;
     };
 
 }]);
