@@ -50,7 +50,7 @@
         [TestMethod]
         public void TestGetAllPostsForUserWhenNoSuchUserShouldReturnBadRequest()
         {
-            var response = this.controller.GetAllPostsForUser("not existing")
+            var response = this.controller.GetAllPostsForUser("not existing", 0, 1)
                 .ExecuteAsync(CancellationToken.None)
                 .Result;
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
@@ -61,7 +61,7 @@
         [TestMethod]
         public void TestGetAllPostsForUserWhenUserExistsShouldReturnAllHisPosts()
         {
-            var response = this.controller.GetAllPostsForUser("First")
+            var response = this.controller.GetAllPostsForUser("First", 0, 100000)
                 .ExecuteAsync(CancellationToken.None)
                 .Result;
 

@@ -250,6 +250,7 @@
     <Compile Include="Infrastructure\IUserIdProvider.cs" />
     <Compile Include="Infrastructure\Messege.cs" />
     <Compile Include="Models\BindingModels\AccountBindingModels.cs" />
+    <Compile Include="Models\BindingModels\EditPostBindingModel.cs" />
     <Compile Include="Models\BindingModels\FollowBindingModel.cs" />
     <Compile Include="Models\BindingModels\NewPostBindingModel.cs" />
     <Compile Include="Models\BindingModels\NewReplyBindingModel.cs" />
