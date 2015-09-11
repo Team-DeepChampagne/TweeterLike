@@ -292,7 +292,7 @@
         {
             this.RemoveAuthenticatioToken();
 
-            return httpClient.GetAsync("api/Reply?postId=" + id).Result;
+            return httpClient.GetAsync("api/Reply?postId=" + id + "&skip=0&take=100").Result;
         }
     }
 }
