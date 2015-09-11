@@ -35,7 +35,13 @@
                 <div class="panel-footer">
                     <i class="fa fa-comments fa-size link" ng-click="seeComments = !seeComments; getReplies(tweet.Id, tweet)"></i>
                     <i class="fa fa-reply fa-size link" ng-click="seeReplyForm = !seeReplyForm"></i>
+                    <i class="fa-pencil fa-size link" ng-click="seeEditForm = !seeEditForm"></i>
                 </div>
+            </div>
+            <div ng-show="seeEditForm">
+                Title: <input type="text" name="title" value=" " ng-model="newTitle" />
+                Content: <input type="text" name="content" value=" " ng-model="newContent" />
+                <button type="button" ng-click="editPost(tweet.Id)">Edit</button>
             </div>
             <div ng-show="seeComments">
                 <ul>

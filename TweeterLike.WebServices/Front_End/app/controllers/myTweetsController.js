@@ -11,6 +11,7 @@ app.controller('myTweetsController', ['$scope', '$location',
     $scope.feedLimit = 5;
     $scope.seeReplyForm = false;
     $scope.seeComments = false;
+    $scope.seeEditForm = false;
 
     var currentUsername = authService.authentication.userName;
 
@@ -101,6 +102,15 @@ app.controller('myTweetsController', ['$scope', '$location',
                 $route.reload();
             });
         }
+    };
+
+    $scope.editPost = function (currentPostId) {
+        $http.patch(serviceBase + 'api/post/' + currentPostId, $scope.newTitle, $scope.newContent).then(function (response) {
+            $route.reload;
+        },
+       function (response) {
+
+       });
     };
 
     $scope.postReply = function (currentPostId) {
