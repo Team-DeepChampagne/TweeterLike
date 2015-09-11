@@ -4,8 +4,8 @@
     <title></title>
 </head>
 <body>
-    <p>You are followed by: </p>
-    <ul>
+    <p class="follow-p">You are followed by: </p>
+    <ul class="search-list">
         <li ng-repeat="user in loggedUserFollowedBy">
             <a ng-click="getUserTweets(user.Username)">{{user.Username}}</a>
         </li>

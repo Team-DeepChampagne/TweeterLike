@@ -39,10 +39,8 @@
             </div>
             <div ng-show="seeComments">
                 <ul>
-                    <li ng-repeat="reply in tweet.replies">      
-                        {{reply.AuthorName}} =>
-                        {{reply.Comment}} =>
-                        {{reply.CreateAt}}
+                    <li ng-repeat="reply in tweet.replies">                   
+                        <div class="well">{{reply.AuthorName}} => {{reply.Comment}} => {{reply.CreateAt}}</div>     
                     </li>
                     <li ng-show="tweet.replies.length == 0">No replies yet!</li>  
                 </ul>

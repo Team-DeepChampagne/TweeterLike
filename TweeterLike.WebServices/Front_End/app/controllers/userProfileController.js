@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('userProfileController', ['$rootScope', '$scope', '$location',
-'authService', '$http', '$controller', function ($rootScope, $scope, $location, authService, $http, $controller) {
+'authService', '$http', '$controller', '$route', function ($rootScope, $scope, $location, authService, $http, $controller, $route) {
 
     var serviceBase = 'http://localhost:16270/';
 
@@ -32,7 +32,17 @@ app.controller('userProfileController', ['$rootScope', '$scope', '$location',
             url: serviceBase + 'api/Follow',
             params: { username: $scope.foundUser }
         }).success(function (result) {
-           
+            $route.reload();
+        });
+    };
+
+    $scope.unfollowUser = function () {
+        $http({
+            method: 'GET',
+            url: serviceBase + 'api/Unfollow',
+            params: { username: $scope.foundUser }
+        }).success(function (result) {
+            $route.reload();
         });
     };
 

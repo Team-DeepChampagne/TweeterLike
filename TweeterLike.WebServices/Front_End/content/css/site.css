@@ -145,3 +145,61 @@
     color: red;
     font-size: 13px;
 }
+
+.no-margin {
+    margin-bottom: 0;
+}
+
+.only-top-margin {
+    margin-top: 20px;
+}
+
+.reply-btn {
+    width: 19.5%;
+}
+
+.no-replies {
+    text-align: center;
+    font-weight: bold;
+}
+
+.search-div {
+    width: 25%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.search-btn {
+    margin-bottom: 5px;
+}
+
+.search-input {
+    height: 35px;
+}
+
+.search-list {
+    width: 25%;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.search-list a:hover {
+    cursor: pointer;
+}
+
+.search-list a {
+    text-decoration: none;
+}
+
+.search-list li {
+    border-bottom: 1px solid black;
+}
+
+.follow-p {
+    width: 20%;
+    margin: 0 auto;
+    text-align: center;
+}

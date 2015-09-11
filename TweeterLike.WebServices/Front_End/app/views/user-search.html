@@ -8,11 +8,13 @@
         <ul ng-hide="true">
             <li ng-repeat="user in (totalFoundUsers = (foundUsers | filter: query))">
         </ul>
-        <input type="text" name="name" value=" " ng-model="searchedUser" />
-        <button type="submit" ng-click="findUsers()">Search</button>
-        <ul>
+        <div class="search-div">
+            <input class="search-input" type="text" name="name" ng-model="searchedUser" placeholder="Write username here..." />
+            <button class="btn btn-primary search-btn" type="submit" ng-click="findUsers()">Search</button>
+        </div>
+        <ul class="search-list">
             <li ng-repeat="user in foundUsers">
-                <a ng-click="getUserTweets(user.Username)">{{user.Username}}</a>
+                <a ng-click="getUserTweets(user.Username)"><span class="glyphicon glyphicon-ok"></span> {{user.Username}}</a>
             </li>
             <li ng-if="totalFoundUsers.length==0">No results found! </li>
         </ul>

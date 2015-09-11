@@ -6,11 +6,12 @@
 <body>
     Following: <a ng-click="showUserFollowings()">{{followingCount}}</a>
     Followed By: <a ng-click="showUserFollowedBy()">{{followedByCount}}</a>
-    <button type="submit" ng-click="followUser()">Follow</button>
+    <button  type="submit" ng-click="followUser()">Follow</button>
+    <button  type="submit" ng-click="unfollowUser()">Unfollow</button>
     <ul class="tweets-list">
-        <li class="li-tweet"><h4>{{foundUser}}'s tweets</h4></li>
+        <li class="li-tweet centered-text"><h4>{{foundUser}}'s tweets</h4></li>
         <hr class="your-tweets-hr" />
-        <li class="li-tweet" ng-show="foundUserTweets.length == 0"><h4>{{foundUser}} has no tweets yet!</h4></li>
+        <li class="li-tweet centered-text" ng-show="foundUserTweets.length == 0"><h4>{{foundUser}} has no tweets yet!</h4></li>
         <li class="li-tweet" ng-repeat="tweet in (foundUserTweets | limitTo:feedLimit)">
             <div class="panel panel-default">
                 <div class="panel-heading">

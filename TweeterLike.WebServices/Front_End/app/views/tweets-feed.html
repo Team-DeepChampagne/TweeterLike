@@ -5,15 +5,15 @@
 </head>
 <body>  
     <ul class="tweets-list">
-        <li class="li-tweet"><h4>Tweets</h4></li>
+        <li class="li-tweet centered-text"><h4>Browse Tweets</h4></li>
         <hr class="your-tweets-hr" />
-        <li class="li-tweet" ng-show="followingsTweets.length == 0"><h5>No tweets here yet! Follow someone to see his tweets here!</h5></li>
+        <li class="li-tweet" style="text-align: center;" ng-show="followingsTweets.length == 0"><h5>No tweets here yet! Follow someone to see his tweets here!</h5></li>
         <li class="li-tweet" ng-repeat="tweet in (followingsTweets | limitTo:feedLimit)">
-            <div class="panel panel-default">
+            <div class="panel panel-default no-margin only-top-margin">
                 <div class="panel-heading">
                     <h6 class="tweet-title">{{tweet.Title}}</h6>
                     <h6 class="created-at"><a class="tweet-author" ng-click="getUserTweets(tweet.AuthorName)"><i class="fa fa-user fa-lg"></i> {{tweet.AuthorName}}</a><i class="fa fa-calendar"></i> {{formatDate(tweet.CreateAt)}}</h6>
-                   
+
                 </div>
                 <div class="panel-body">{{tweet.Comment}}</div>
                 <div class="panel-footer">
@@ -22,22 +22,28 @@
                 </div>
             </div>
             <div ng-show="seeComments">
-                <ul>
+                <ul class="tweets-list">
                     <li ng-repeat="reply in tweet.replies">
-                        {{reply.AuthorName}} =>
-                        {{reply.Comment}} =>
-                        {{reply.CreateAt}}
+                        <div class="well no-margin" style="border-left: 1px solid black;">
+                            <div>
+                                <a class="tweet-author" ng-click="getUserTweets(reply.AuthorName)">{{reply.AuthorName}}</a> {{reply.Comment}}
+                            </div>
+                           <span style="font-size:12px; color: #888888; font-style: italic;">{{formatDate(reply.CreateAt)}}</span>
+                        </div>
                     </li>
-                    <li ng-show="tweet.replies.length == 0">No replies yet!</li>  
+                    <div class="well no-margin" ng-show="tweet.replies.length == 0">
+                        <li class="no-replies no-replies">No replies yet!</li>
+                    </div>
+                  
                 </ul>
             </div>
-            <div ng-show="seeReplyForm">
-                <textarea ng-model="newReply.Comment">Post reply</textarea>
-                <button type="submit" ng-click="postReply(tweet.Id)">Reply</button>
+            <div ng-show="seeReplyForm" style="margin-top: 5px">
+                <textarea ng-model="newReply.Comment" style="display: block;" placeholder="Write reply here..."></textarea>
+                <button class="btn btn-primary reply-btn" type="submit" ng-click="postReply(tweet.Id)">Reply</button>
             </div>
         </li>
-        <li class="li-tweet">
-            <button ng-hide="feedLimit >= followingsTweets.length" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
+        <li class="li-tweet" ng-hide="feedLimit >= followingsTweets.length">
+            <button style="margin-top: 10px;" type="button" class="btn btn-default" ng-click="showMore()">Show more tweets</button>
         </li>
     </ul>
 
