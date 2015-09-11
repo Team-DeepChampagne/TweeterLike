@@ -10,6 +10,7 @@
     using Data.DataLayer;
     using Infrastructure;
 
+    [Authorize]
     [RoutePrefix("api/post")]
     public class PostController : BaseApplicationController
     {
@@ -23,8 +24,7 @@
         {
         }
 
-        // api/post
-        [Authorize]
+        // api/post        
         public IHttpActionResult PostAddNewPost(NewPostBindingModel model)
         {
             if (model == null)
@@ -57,12 +57,12 @@
                 Comment = post.Comment,
                 CreateAt = post.CreatedAt,
             };
+
             return this.Ok(postView);
         }
 
-        //GET api/post?username=username
-        [Authorize]
-        public IHttpActionResult GetAllPostsForUser(string username)
+        //GET api/post?username=username&skip={skip}&take={take}
+        public IHttpActionResult GetAllPostsForUser(string username, int skip, int take)
         {
             var user = this.Data.ApplicationUsers.All().FirstOrDefault(u => u.UserName == username);
 
@@ -71,7 +71,12 @@
                 return this.BadRequest(Messege.NoSuchUser);
             }
 
-            var userPosts = user.Posts.OrderByDescending(p => p.CreatedAt).AsQueryable();
+            var userPosts = user.Posts
+                .OrderByDescending(p => p.CreatedAt)
+                .Skip(skip)
+                .Take(take)
+                .AsQueryable();
+
             var userPostsViewModel = userPosts.Select(PostViewModel.Create);
 
             if (!this.ModelState.IsValid)
@@ -82,7 +87,7 @@
             return this.Ok(userPostsViewModel);
         }
 
-        [Authorize]
+
         public IHttpActionResult DeletePost(int id)
         {
             var post = this.Data.Posts.GetById(id);
@@ -115,7 +120,7 @@
             return this.Ok();
         }
 
-        [Authorize]
+
         public IHttpActionResult GetAllPostsForFollowingUsers()
         {
             var postsView = this.Data.ApplicationUsers
@@ -127,6 +132,43 @@
                 .Select(PostViewModel.Create);
 
             return this.Ok(postsView);
+        }
+
+
+        [HttpPatch]
+        public IHttpActionResult EditPost(int id, EditPostBindingModel model)
+        {
+            var post = this.Data.Posts.GetById(id);
+
+            if (post == null)
+            {
+                return this.BadRequest(Messege.NoSuchPostError);
+            }
+
+            if (this.UserIdProvider.GetUserId() != post.Author.Id)
+            {
+                return this.BadRequest(Messege.NotYourPostError);
+            }
+
+            if (model.Title != null)
+            {
+                post.Title = model.Title;
+            }
+
+            if (model.Comment != null)
+            {
+                post.Comment = model.Comment;
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            this.Data.Posts.Update(post);
+            this.Data.SaveChanges();
+           
+            return this.Ok();
         }
     }
 }
